@@ -58,7 +58,15 @@ function [matrix, set] = connectivity_4(binary)
             end
         end
     end
-    
+    % Find the single-pixel object
+    for i = 2:65
+        for j = 2:65
+            if (pad_img(i-1, j) == 1) && (pad_img(i, j-1) == 1) && (pad_img(i+1, j) == 1) && (pad_img(i, j+1) == 1) && (pad_img(i, j) == 0)
+                connect_pairs(end+1, 1) = matrix(i-1, j-1);
+                connect_pairs(end, 2) = matrix(i-1, j-1);
+            end
+        end
+    end
     % Eliminate repeated pairs and sort the pairs
     unique_pairs = unique(connect_pairs, 'rows', 'sorted');
     % Count the set number
@@ -95,6 +103,23 @@ function [matrix, set] = connectivity_4(binary)
             end
         end
     end
-    
+    % Sort the set
+    set = sort(set, 2);
+    % Eliminate zero in the set
+    for i = 1:size(set, 1)
+        zero_counter = 0;
+        if set(i, 1) ~= 0
+            continue
+        else
+            for j = 1:size(set, 2)
+                if set(i, j) == 0
+                    zero_counter = zero_counter + 1;
+                else
+                    set(i, j-zero_counter) = set(i, j);
+                    set(i, j) = 0;
+                end
+            end
+        end
+    end
 end
     
