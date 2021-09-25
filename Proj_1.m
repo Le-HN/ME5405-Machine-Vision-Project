@@ -27,14 +27,15 @@ imshow(outline_enlarged)
 % Problem 5.1:
 % Label different objects
 % 4 connectivity
-[labeled_matrix, connectivity_set] = connectivity_4(binary);
+[labeled_matrix_4, connectivity_set_4] = connectivity_4(binary);
 % Print matrix and set
-labeled_matrix
-connectivity_set
+labeled_matrix_4
+connectivity_set_4
 
 % Problem 5.2:
 % Label different objects
-% 4 connectivity
-        
-        
+% 8 connectivity
+[labeled_matrix_8, connectivity_set_8] = connectivity_8(binary);
+labeled_matrix_8
+connectivity_set_8
 
