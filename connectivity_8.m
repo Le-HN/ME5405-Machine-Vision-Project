@@ -11,8 +11,8 @@ function [matrix, set] = connectivity_8(binary)
     connect_pairs = [0 0;];
     % Count the pair number
     pair_pointer = 1;
-    for i = 2:64
-        for j = 2:64
+    for i = 2:65
+        for j = 2:65
             % A neighbour list include West, North-west, North, North-east
             neighbour_list = [pad_img(i, j-1) pad_img(i-1, j-1) pad_img(i-1, j) pad_img(i-1, j+1)];
             % To see how many neighbours the current pixel has
@@ -20,7 +20,11 @@ function [matrix, set] = connectivity_8(binary)
             
             % Limit the boundary and save the labels of neighbours
             if (i > 2) && (j > 2)
-                label_list = [matrix(i-1, j-2) matrix(i-2, j-2) matrix(i-2, j-1) matrix(i-2, j)];
+                if j < 65
+                    label_list = [matrix(i-1, j-2) matrix(i-2, j-2) matrix(i-2, j-1) matrix(i-2, j)];
+                else
+                    label_list = [matrix(i-1, j-2) matrix(i-2, j-2) matrix(i-2, j-1) 0];
+                end
             end
             if (i <= 2) && (j > 2)
                 label_list = [matrix(i-1, j-2) 0 0 0];
@@ -65,7 +69,8 @@ function [matrix, set] = connectivity_8(binary)
             end
         end
     end
-    % Find the single-pixel object
+    
+    % Find the single-pixel object and add them to connected pairs
     for i = 2:64
         for j = 2:64
             if (pad_img(i-1, j) == 1) && (pad_img(i, j-1) == 1) && (pad_img(i+1, j) == 1) && (pad_img(i, j+1) == 1)...

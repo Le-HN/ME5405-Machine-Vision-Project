@@ -24,10 +24,10 @@ function [small_gray_img, gray_img] = binary_image(histogram_num)
             % period of 8 gray levels
             max_delta = 0;
             max_index = 0;
-            for k = 9:32
-                if histogram(k)-histogram(k-8) > max_delta
-                    max_delta = histogram(k)-histogram(k-8);
-                    max_index = k-8;
+            for k = 8:32
+                if histogram(k)-histogram(k-7) > max_delta
+                    max_delta = histogram(k)-histogram(k-7);
+                    max_index = k-7;
                 end
             end
             % Define the threshold and processing the image

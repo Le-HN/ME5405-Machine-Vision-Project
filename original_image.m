@@ -1,5 +1,4 @@
-function [histogram_num, small_gray_img, gray_img] = original_image()
-    filepath = 'ME5405-Machine-Vision-Project\chromo.txt';
+function [histogram_num, small_gray_img, gray_img] = original_image(filepath)
     fileID = fopen(filepath,'r');
     Image = fscanf(fileID,'%s',[64 1]);
     % Matrix transpose

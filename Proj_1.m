@@ -2,7 +2,8 @@ clc;
 
 % Problem 1:
 % Show the original image (enlarged)
-[histogram_num, original, enlarged] = original_image();
+filepath = 'chromo.txt';
+[histogram_num, original, enlarged] = original_image(filepath);
 figure(1);
 imshow(enlarged);
 
@@ -28,6 +29,9 @@ imshow(outline_enlarged)
 % Label different objects
 % 4 connectivity
 [labeled_matrix_4, connectivity_set_4] = connectivity_4(binary);
+[coloured] = segmentation(labeled_matrix_4, connectivity_set_4);
+figure(5);
+image(coloured);
 % Print matrix and set
 labeled_matrix_4
 connectivity_set_4
@@ -36,6 +40,10 @@ connectivity_set_4
 % Label different objects
 % 8 connectivity
 [labeled_matrix_8, connectivity_set_8] = connectivity_8(binary);
+[coloured] = segmentation(labeled_matrix_8, connectivity_set_8);
+figure(6);
+image(coloured);
+% Print matrix and set
 labeled_matrix_8
 connectivity_set_8
 

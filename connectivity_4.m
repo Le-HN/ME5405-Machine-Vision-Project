@@ -58,7 +58,8 @@ function [matrix, set] = connectivity_4(binary)
             end
         end
     end
-    % Find the single-pixel object
+    
+    % Find the single-pixel object and add them into connected pairs
     for i = 2:65
         for j = 2:65
             if (pad_img(i-1, j) == 1) && (pad_img(i, j-1) == 1) && (pad_img(i+1, j) == 1) && (pad_img(i, j+1) == 1) && (pad_img(i, j) == 0)
